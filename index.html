@@ -32,6 +32,34 @@ body {
     text-align: center;
 }
 
+    /* Section header */
+
+.section-header {
+    margin-top: 45px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    opacity: 0.9;
+}
+
+.section-header::before,
+.section-header::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(120,150,255,0.5), transparent);
+}
+
+.section-header span {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #cfd6ff;
+}
+
 /* Profile */
 
 .profile-pic {
