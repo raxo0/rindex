@@ -55,6 +55,12 @@
             object-fit: cover;
             border: 3px solid #333;
             background-color: #1a1a1a;
+            transition: all 0.3s ease;
+        }
+        
+        .avatar.online {
+            border-color: #2ecc71;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
         }
         
         .avatar-placeholder {
@@ -68,6 +74,12 @@
             justify-content: center;
             color: #666;
             font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .avatar-placeholder.online {
+            border-color: #2ecc71;
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
         }
         
         .online-status {
@@ -79,6 +91,12 @@
             background-color: #2ecc71;
             border-radius: 50%;
             border: 3px solid #111;
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+        }
+        
+        .online-status.offline {
+            background-color: #666;
+            box-shadow: none;
         }
         
         .profile-info h1 {
@@ -94,6 +112,12 @@
             margin-bottom: 15px;
         }
         
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
         .badge {
             display: inline-flex;
             align-items: center;
@@ -105,6 +129,12 @@
             border: 1px solid #333;
             font-weight: 500;
             gap: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .badge:hover {
+            background-color: #2a2a2a;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
         
         .description-box {
@@ -113,6 +143,11 @@
             border-radius: 12px;
             margin-bottom: 25px;
             border-left: 3px solid #444;
+            transition: all 0.2s ease;
+        }
+        
+        .description-box:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
         }
         
         .description-box h2 {
@@ -144,6 +179,11 @@
             padding: 25px;
             margin-bottom: 25px;
             border: 1px solid #222;
+            transition: all 0.2s ease;
+        }
+        
+        .social-links:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
         }
         
         .social-grid {
@@ -184,10 +224,12 @@
         
         .social-link.discord:hover {
             border-color: #5865f2;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
         }
         
         .social-link.youtube:hover {
             border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
         }
         
         /* Spotify Section */
@@ -197,6 +239,11 @@
             padding: 25px;
             margin-bottom: 25px;
             border: 1px solid #222;
+            transition: all 0.2s ease;
+        }
+        
+        .spotify-section:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
         }
         
         .spotify-player {
@@ -208,6 +255,11 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            transition: all 0.2s ease;
+        }
+        
+        .spotify-player:hover {
+            box-shadow: 0 0 15px rgba(29, 185, 84, 0.2);
         }
         
         .spotify-album {
@@ -285,6 +337,11 @@
             padding: 25px;
             margin-bottom: 25px;
             border: 1px solid #222;
+            transition: all 0.2s ease;
+        }
+        
+        .recent-activity:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
         }
         
         .coming-soon {
@@ -323,6 +380,10 @@
                 margin-bottom: 20px;
             }
             
+            .badges {
+                justify-content: center;
+            }
+            
             .social-grid {
                 grid-template-columns: 1fr;
             }
@@ -343,18 +404,23 @@
         <div class="profile-card">
             <div class="profile-header">
                 <div class="avatar-container">
-                    <img src="profile.jpg" alt="Gux Profile Picture" class="avatar" 
+                    <img src="profile.jpg" alt="Gux Profile Picture" class="avatar" id="avatarImg"
                          onerror="this.style.display='none'; document.getElementById('avatarPlaceholder').style.display='flex';">
                     <div id="avatarPlaceholder" class="avatar-placeholder" style="display: none;">
                         <i class="fas fa-user"></i>
                     </div>
-                    <div class="online-status" title="Online"></div>
+                    <div class="online-status" id="onlineStatus"></div>
                 </div>
                 <div class="profile-info">
                     <h1>Gux</h1>
                     <div class="username">@gux</div>
-                    <div class="badge">
-                        <span>🛠️</span> owner
+                    <div class="badges">
+                        <div class="badge">
+                            <span>🛠️</span> owner
+                        </div>
+                        <div class="badge">
+                            <span>🌍</span> OG
+                        </div>
                     </div>
                 </div>
             </div>
@@ -402,9 +468,9 @@
     </div>
 
     <script>
-        // Check if profile.jpg exists
+        // Check if profile.jpg exists and update online status
         document.addEventListener('DOMContentLoaded', function() {
-            const avatarImg = document.querySelector('.avatar');
+            const avatarImg = document.getElementById('avatarImg');
             const avatarPlaceholder = document.getElementById('avatarPlaceholder');
             
             const testImage = new Image();
@@ -418,12 +484,15 @@
             };
             testImage.src = 'profile.jpg';
             
-            // Load Spotify now playing
-            loadSpotify();
+            // Load Spotify and online status
+            loadDiscordStatus();
         });
         
-        async function loadSpotify() {
+        async function loadDiscordStatus() {
             const container = document.getElementById('spotify-container');
+            const onlineStatus = document.getElementById('onlineStatus');
+            const avatarImg = document.getElementById('avatarImg');
+            const avatarPlaceholder = document.getElementById('avatarPlaceholder');
             
             try {
                 const response = await fetch('https://api.lanyard.rest/v1/users/1444012737767149578');
@@ -433,31 +502,49 @@
                 }
                 
                 const data = await response.json();
-                console.log('Lanyard data:', data); // Debug log
                 
-                if (data.success && data.data && data.data.listening_to_spotify && data.data.spotify) {
-                    const spotify = data.data.spotify;
+                if (data.success && data.data) {
+                    const discordData = data.data;
                     
-                    container.innerHTML = `
-                        <div class="spotify-player">
-                            <div class="spotify-album">
-                                <img src="${spotify.album_art_url}" alt="Album Art" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-music\\'></i>'">
-                            </div>
-                            <div class="spotify-info">
-                                <div class="spotify-track">${escapeHtml(spotify.song)}</div>
-                                <div class="spotify-artist">${escapeHtml(spotify.artist)}</div>
-                                <div class="spotify-live">
-                                    <div class="pulse-dot"></div>
-                                    LIVE
+                    // Update online status
+                    const isOnline = discordData.discord_status !== 'offline';
+                    if (isOnline) {
+                        onlineStatus.classList.remove('offline');
+                        avatarImg.classList.add('online');
+                        avatarPlaceholder.classList.add('online');
+                    } else {
+                        onlineStatus.classList.add('offline');
+                        avatarImg.classList.remove('online');
+                        avatarPlaceholder.classList.remove('online');
+                    }
+                    
+                    // Update Spotify status
+                    if (discordData.listening_to_spotify && discordData.spotify) {
+                        const spotify = discordData.spotify;
+                        
+                        container.innerHTML = `
+                            <div class="spotify-player">
+                                <div class="spotify-album">
+                                    <img src="${spotify.album_art_url}" alt="Album Art" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-music\\'></i>'">
+                                </div>
+                                <div class="spotify-info">
+                                    <div class="spotify-track">${escapeHtml(spotify.song)}</div>
+                                    <div class="spotify-artist">${escapeHtml(spotify.artist)}</div>
+                                    <div class="spotify-live">
+                                        <div class="pulse-dot"></div>
+                                        LIVE
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    `;
+                        `;
+                    } else {
+                        container.innerHTML = '<div class="spotify-offline">Not listening to anything right now</div>';
+                    }
                 } else {
-                    container.innerHTML = '<div class="spotify-offline">Not listening to anything right now</div>';
+                    throw new Error('Invalid data structure');
                 }
             } catch (error) {
-                console.error('Spotify fetch error:', error);
+                console.error('Discord status fetch error:', error);
                 container.innerHTML = '<div class="spotify-offline">Could not load Spotify status</div>';
             }
         }
@@ -468,8 +555,8 @@
             return div.innerHTML;
         }
         
-        // Refresh Spotify status every 15 seconds
-        setInterval(loadSpotify, 15000);
+        // Refresh Discord status every 15 seconds
+        setInterval(loadDiscordStatus, 15000);
     </script>
 </body>
 </html>
