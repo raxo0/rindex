@@ -3,77 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rindex Profile</title>
+
+<title>Gux — Profile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f0f12;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #1a1f3c, #050509);
     color: white;
     display: flex;
     justify-content: center;
+    min-height: 100vh;
 }
+
+/* Container */
 
 .container {
     width: 100%;
-    max-width: 500px;
-    padding: 40px 20px;
+    max-width: 520px;
+    padding: 50px 20px;
     text-align: center;
 }
 
 /* Profile */
 
 .profile-pic {
-    width: 110px;
-    height: 110px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #222;
+    border: 3px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 25px rgba(120,150,255,0.4);
 }
 
 .username {
-    margin-top: 15px;
-    font-size: 26px;
-    font-weight: bold;
+    margin-top: 18px;
+    font-size: 30px;
+    font-weight: 800;
 }
 
 .bio {
-    margin-top: 8px;
-    color: #aaa;
+    margin-top: 6px;
     font-size: 14px;
+    color: #cfcfcf;
+    opacity: 0.85;
 }
 
 /* Games grid */
 
 .games {
-    margin-top: 35px;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 22px;
 }
 
+/* Game card */
+
 .game {
-    background: #18181d;
-    border-radius: 12px;
-    padding: 12px;
-    transition: transform 0.15s ease, background 0.15s ease;
+    backdrop-filter: blur(14px);
+    background: rgba(255,255,255,0.05);
+    border-radius: 18px;
+    padding: 14px;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
 .game:hover {
-    transform: scale(1.05);
-    background: #22222a;
+    transform: translateY(-6px) scale(1.03);
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 25px rgba(120,150,255,0.25);
 }
+
+/* Force same image size */
 
 .game img {
     width: 100%;
-    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
 .game-title {
-    margin-top: 8px;
+    margin-top: 10px;
     font-size: 14px;
-    color: #ddd;
+    font-weight: 600;
+    color: #e5e5e5;
 }
 </style>
 </head>
@@ -83,31 +105,33 @@ body {
 <div class="container">
 
     <!-- Profile -->
+
     <img src="profile.jpg" class="profile-pic" alt="Profile Picture">
     <div class="username">Gux</div>
     <div class="bio">sup, im tuff</div>
 
     <!-- Games -->
+
     <div class="games">
 
         <div class="game">
-            <img src="game1.jpg" alt="Game 1">
-            <div class="game-title">Game Title</div>
+            <img src="minecraft.jpg" alt="Minecraft">
+            <div class="game-title">Minecraft</div>
         </div>
 
         <div class="game">
-            <img src="game2.jpg" alt="Game 2">
-            <div class="game-title">Another Game</div>
+            <img src="polytoria.jpg" alt="Polytoria">
+            <div class="game-title">Polytoria</div>
         </div>
 
         <div class="game">
-            <img src="game3.jpg" alt="Game 3">
-            <div class="game-title">Cool Indie Game</div>
+            <img src="rocketleague.jpg" alt="Rocket League">
+            <div class="game-title">Rocket League</div>
         </div>
 
         <div class="game">
-            <img src="game4.jpg" alt="Game 4">
-            <div class="game-title">Favorite Game</div>
+            <img src="brawlhalla.jpg" alt="Brawlhalla">
+            <div class="game-title">Brawlhalla</div>
         </div>
 
     </div>
