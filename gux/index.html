@@ -5,254 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gux - Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-tertiary: #151515;
-            --border-primary: #222222;
-            --border-secondary: #333333;
-            --text-primary: #ffffff;
-            --text-secondary: #e0e0e0;
-            --text-muted: #888888;
-            --text-dim: #555555;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #8b5cf6;
-            --accent-success: #10b981;
-            --spotify-green: #1db954;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         }
         
         body {
-            background-color: var(--bg-primary);
-            color: var(--text-secondary);
-            font-family: 'Outfit', system-ui, sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            background-image: 
-                radial-gradient(circle at 20% 10%, rgba(59, 130, 246, 0.06) 0%, transparent 40%),
-                radial-gradient(circle at 80% 90%, rgba(139, 92, 246, 0.06) 0%, transparent 40%);
         }
         
         .container {
             width: 100%;
-            max-width: 700px;
-            animation: fadeIn 0.8s ease;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            max-width: 600px;
         }
         
         .profile-card {
-            background: linear-gradient(135deg, rgba(17, 17, 17, 0.8) 0%, rgba(21, 21, 21, 0.6) 100%);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 50px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.8),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-primary);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .profile-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-primary));
-            background-size: 200% 100%;
-            animation: shimmer 3s linear infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            background-color: #111;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid #222;
         }
         
         .profile-header {
             display: flex;
             align-items: center;
-            margin-bottom: 35px;
-            animation: slideInLeft 0.6s ease 0.2s backwards;
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            margin-bottom: 30px;
         }
         
         .avatar-container {
             position: relative;
-            margin-right: 30px;
+            margin-right: 25px;
         }
         
         .avatar {
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid transparent;
-            background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
-                        linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) border-box;
+            border: 3px solid #333;
+            background-color: #1a1a1a;
         }
         
         .avatar-placeholder {
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            background-color: #1a1a1a;
+            border: 3px solid #333;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-primary);
-            font-size: 2.5rem;
-            border: 4px solid var(--border-secondary);
+            color: #666;
+            font-size: 2rem;
         }
         
         .online-status {
             position: absolute;
             bottom: 5px;
             right: 5px;
-            width: 24px;
-            height: 24px;
-            background-color: var(--accent-success);
+            width: 20px;
+            height: 20px;
+            background-color: #2ecc71;
             border-radius: 50%;
-            border: 4px solid var(--bg-secondary);
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { 
-                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-            }
-            50% { 
-                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
-            }
+            border: 3px solid #111;
         }
         
         .profile-info h1 {
-            font-size: 2.5rem;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-            font-weight: 700;
-            letter-spacing: -1px;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            color: #fff;
+            font-weight: 600;
         }
         
         .username {
-            font-size: 1.1rem;
-            color: var(--text-muted);
+            font-size: 1rem;
+            color: #888;
             margin-bottom: 15px;
-            font-family: 'Space Mono', monospace;
         }
         
         .badge {
             display: inline-flex;
             align-items: center;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
-            color: #a0c4ff;
-            padding: 8px 18px;
-            border-radius: 25px;
-            font-size: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            font-weight: 600;
+            background-color: #222;
+            color: #ccc;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            border: 1px solid #333;
+            font-weight: 500;
             gap: 8px;
         }
         
-        .tool-emoji {
-            font-size: 1.15rem;
-        }
-        
         .description-box {
-            background-color: var(--bg-tertiary);
-            padding: 30px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            border-left: 4px solid var(--accent-primary);
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.6s ease 0.3s backwards;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .description-box:hover {
-            border-left-color: var(--accent-secondary);
-            transform: translateX(5px);
+            background-color: #151515;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 3px solid #444;
         }
         
         .description-box h2 {
-            color: var(--text-primary);
+            color: #ccc;
             margin-bottom: 15px;
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.2rem;
+            font-weight: 500;
         }
         
         .description-box p {
-            color: #b0b0b0;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            color: #aaa;
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
         
         .section-title {
-            font-size: 1.4rem;
-            color: var(--text-primary);
+            font-size: 1.3rem;
+            color: #ccc;
             margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--border-primary);
-            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #222;
+            font-weight: 500;
         }
         
-        /* Social Links Section */
+        /* Social Links */
         .social-links {
-            background: linear-gradient(135deg, rgba(21, 21, 21, 0.5) 0%, rgba(17, 17, 17, 0.5) 100%);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid var(--border-primary);
-            animation: fadeInUp 0.6s ease 0.4s backwards;
+            background-color: #151515;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #222;
         }
         
         .social-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-top: 20px;
         }
@@ -263,35 +159,17 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-secondary);
-            border-radius: 12px;
+            background: #111;
+            border: 1px solid #252525;
+            border-radius: 10px;
             text-decoration: none;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-            transition: left 0.5s;
-        }
-        
-        .social-link:hover::before {
-            left: 100%;
+            color: #e0e0e0;
+            transition: all 0.2s ease;
         }
         
         .social-link:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-primary);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+            border-color: #444;
+            background: #151515;
         }
         
         .social-link i {
@@ -304,159 +182,135 @@
             font-weight: 500;
         }
         
-        /* Specific social colors */
         .social-link.discord:hover {
             border-color: #5865f2;
-            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3);
-        }
-        
-        .social-link.github:hover {
-            border-color: #ffffff;
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
-        }
-        
-        .social-link.twitter:hover {
-            border-color: #1da1f2;
-            box-shadow: 0 8px 20px rgba(29, 161, 242, 0.3);
         }
         
         .social-link.youtube:hover {
             border-color: #ff0000;
-            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
         }
         
-        /* Spotify Now Playing */
+        /* Spotify Section */
         .spotify-section {
-            background: linear-gradient(135deg, rgba(21, 21, 21, 0.5) 0%, rgba(17, 17, 17, 0.5) 100%);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid var(--border-primary);
-            animation: fadeInUp 0.6s ease 0.5s backwards;
+            background-color: #151515;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #222;
         }
         
         .spotify-player {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-secondary);
-            border-radius: 12px;
-            padding: 20px;
+            background: #111;
+            border: 1px solid #252525;
+            border-radius: 10px;
+            padding: 15px;
             margin-top: 20px;
             display: flex;
             align-items: center;
-            gap: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .spotify-player:hover {
-            border-color: var(--spotify-green);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(29, 185, 84, 0.2);
+            gap: 15px;
         }
         
         .spotify-album {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #1db954, #1ed760);
+            width: 64px;
+            height: 64px;
+            border-radius: 6px;
+            background: #1db954;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
             flex-shrink: 0;
+        }
+        
+        .spotify-album img {
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            object-fit: cover;
         }
         
         .spotify-info {
             flex: 1;
+            min-width: 0;
         }
         
         .spotify-track {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 5px;
+            color: #fff;
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .spotify-artist {
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-        
-        .spotify-bar {
-            width: 100%;
-            height: 4px;
-            background: var(--bg-tertiary);
-            border-radius: 2px;
+            font-size: 0.95rem;
+            color: #888;
+            white-space: nowrap;
             overflow: hidden;
-        }
-        
-        .spotify-progress {
-            height: 100%;
-            background: var(--spotify-green);
-            width: 60%;
-            animation: progressMove 3s ease-in-out infinite;
-        }
-        
-        @keyframes progressMove {
-            0%, 100% { width: 60%; }
-            50% { width: 75%; }
+            text-overflow: ellipsis;
         }
         
         .spotify-live {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: rgba(29, 185, 84, 0.2);
-            color: var(--spotify-green);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            color: #1db954;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
             font-weight: 600;
             border: 1px solid rgba(29, 185, 84, 0.3);
+            margin-top: 8px;
         }
         
         .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--spotify-green);
+            width: 6px;
+            height: 6px;
+            background: #1db954;
             border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .spotify-offline {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+            font-size: 0.95rem;
         }
         
         .recent-activity {
-            background: linear-gradient(135deg, rgba(21, 21, 21, 0.5) 0%, rgba(17, 17, 17, 0.5) 100%);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid var(--border-primary);
-            animation: fadeInUp 0.6s ease 0.6s backwards;
+            background-color: #151515;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #222;
         }
         
         .coming-soon {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 140px;
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            background-color: var(--bg-secondary);
-            border-radius: 12px;
-            border: 2px dashed var(--border-secondary);
-            font-weight: 500;
+            height: 120px;
+            color: #666;
+            font-size: 1.1rem;
+            background-color: #111;
+            border-radius: 8px;
+            border: 1px dashed #333;
         }
         
         .footer {
             text-align: center;
-            margin-top: 35px;
-            padding-top: 25px;
-            border-top: 1px solid var(--border-primary);
-            color: var(--text-dim);
-            font-size: 0.95rem;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 0.9rem;
         }
         
         @media (max-width: 650px) {
             .profile-card {
-                padding: 35px 25px;
+                padding: 30px 25px;
             }
             
             .profile-header {
@@ -466,35 +320,20 @@
             
             .avatar-container {
                 margin-right: 0;
-                margin-bottom: 25px;
-            }
-            
-            .avatar, .avatar-placeholder {
-                width: 100px;
-                height: 100px;
+                margin-bottom: 20px;
             }
             
             .social-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
             
             .spotify-player {
                 flex-direction: column;
                 text-align: center;
             }
-        }
-        
-        @media (max-width: 480px) {
-            .profile-card {
-                padding: 30px 20px;
-            }
             
-            .description-box, .recent-activity, .social-links, .spotify-section {
-                padding: 25px 20px;
-            }
-            
-            .social-grid {
-                grid-template-columns: 1fr;
+            .spotify-live {
+                margin-top: 10px;
             }
         }
     </style>
@@ -513,9 +352,9 @@
                 </div>
                 <div class="profile-info">
                     <h1>Gux</h1>
-                    <div class="username">@gux</div>
+                    <div class="username">gux</div>
                     <div class="badge">
-                        <span class="tool-emoji">🛠️</span> owner
+                        <span>🛠️</span> owner
                     </div>
                 </div>
             </div>
@@ -525,50 +364,27 @@
                 <p>Howdy, I'm Gux and I like video games like brawlhalla, minecraft, polytoria, etc.</p>
             </div>
             
-            <!-- Social Links Section -->
             <div class="social-links">
                 <h2 class="section-title">Connect</h2>
                 <div class="social-grid">
-                    <a href="#" class="social-link discord" title="Discord">
+                    <a href="https://discord.com/users/1444012737767149578" class="social-link discord" target="_blank" rel="noopener">
                         <i class="fab fa-discord"></i>
                         <span>Discord</span>
                     </a>
-                    <a href="#" class="social-link github" title="GitHub">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="#" class="social-link twitter" title="Twitter">
-                        <i class="fab fa-twitter"></i>
-                        <span>Twitter</span>
-                    </a>
-                    <a href="#" class="social-link youtube" title="YouTube">
+                    <a href="https://www.youtube.com/@GuxPT" class="social-link youtube" target="_blank" rel="noopener">
                         <i class="fab fa-youtube"></i>
                         <span>YouTube</span>
                     </a>
                 </div>
             </div>
             
-            <!-- Spotify Now Playing -->
             <div class="spotify-section">
                 <h2 class="section-title">
-                    <i class="fab fa-spotify" style="color: var(--spotify-green); margin-right: 8px;"></i>
+                    <i class="fab fa-spotify" style="color: #1db954; margin-right: 8px;"></i>
                     Now Playing
                 </h2>
-                <div class="spotify-player">
-                    <div class="spotify-album">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <div class="spotify-info">
-                        <div class="spotify-track">Gaming Vibes Mix</div>
-                        <div class="spotify-artist">Various Artists</div>
-                        <div class="spotify-bar">
-                            <div class="spotify-progress"></div>
-                        </div>
-                    </div>
-                    <div class="spotify-live">
-                        <div class="pulse-dot"></div>
-                        LIVE
-                    </div>
+                <div id="spotify-container">
+                    <div class="spotify-offline">Not listening to anything right now</div>
                 </div>
             </div>
             
@@ -586,25 +402,58 @@
     </div>
 
     <script>
-        // Check if profile.jpg exists, show placeholder if not
+        // Check if profile.jpg exists
         document.addEventListener('DOMContentLoaded', function() {
             const avatarImg = document.querySelector('.avatar');
             const avatarPlaceholder = document.getElementById('avatarPlaceholder');
             
-            // Try to load the image
             const testImage = new Image();
             testImage.onload = function() {
-                // Image exists, show it
                 avatarImg.style.display = 'block';
                 avatarPlaceholder.style.display = 'none';
             };
             testImage.onerror = function() {
-                // Image doesn't exist, show placeholder
                 avatarImg.style.display = 'none';
                 avatarPlaceholder.style.display = 'flex';
             };
             testImage.src = 'profile.jpg';
+            
+            // Load Spotify now playing
+            loadSpotify();
         });
+        
+        async function loadSpotify() {
+            try {
+                const response = await fetch('https://api.lanyard.rest/v1/users/1444012737767149578');
+                const data = await response.json();
+                
+                if (data.success && data.data.listening_to_spotify) {
+                    const spotify = data.data.spotify;
+                    const container = document.getElementById('spotify-container');
+                    
+                    container.innerHTML = `
+                        <div class="spotify-player">
+                            <div class="spotify-album">
+                                <img src="${spotify.album_art_url}" alt="Album Art">
+                            </div>
+                            <div class="spotify-info">
+                                <div class="spotify-track">${spotify.song}</div>
+                                <div class="spotify-artist">${spotify.artist}</div>
+                                <div class="spotify-live">
+                                    <div class="pulse-dot"></div>
+                                    LIVE
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.log('Could not load Spotify data');
+            }
+        }
+        
+        // Refresh Spotify status every 30 seconds
+        setInterval(loadSpotify, 30000);
     </script>
 </body>
 </html>
