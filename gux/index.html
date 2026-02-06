@@ -99,14 +99,20 @@
         }
         
         .badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             background-color: #222222;
             color: #cccccc;
-            padding: 6px 15px;
+            padding: 7px 16px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             border: 1px solid #333333;
             font-weight: 500;
+            gap: 8px;
+        }
+        
+        .tool-emoji {
+            font-size: 1.1rem;
         }
         
         .description-box {
@@ -218,7 +224,9 @@
                 <div class="profile-info">
                     <h1>Gux</h1>
                     <div class="username">@gux</div>
-                    <div class="badge">owner</div>
+                    <div class="badge">
+                        <span class="tool-emoji">🛠️</span> owner
+                    </div>
                 </div>
             </div>
             
@@ -235,7 +243,7 @@
             </div>
             
             <div class="footer">
-                <p>Simple Profile • Gux</p>
+                <p>Profile • Gux</p>
             </div>
         </div>
     </div>
