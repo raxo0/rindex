@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rindex Profile</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f12;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Profile */
+
+.profile-pic {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #222;
+}
+
+.username {
+    margin-top: 15px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.bio {
+    margin-top: 8px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* Games grid */
+
+.games {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.game {
+    background: #18181d;
+    border-radius: 12px;
+    padding: 12px;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.game:hover {
+    transform: scale(1.05);
+    background: #22222a;
+}
+
+.game img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.game-title {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Profile -->
+    <img src="profile.jpg" class="profile-pic" alt="Profile Picture">
+    <div class="username">yourusername</div>
+    <div class="bio">indie gamer • exploring digital worlds</div>
+
+    <!-- Games -->
+    <div class="games">
+
+        <div class="game">
+            <img src="game1.jpg" alt="Game 1">
+            <div class="game-title">Game Title</div>
+        </div>
+
+        <div class="game">
+            <img src="game2.jpg" alt="Game 2">
+            <div class="game-title">Another Game</div>
+        </div>
+
+        <div class="game">
+            <img src="game3.jpg" alt="Game 3">
+            <div class="game-title">Cool Indie Game</div>
+        </div>
+
+        <div class="game">
+            <img src="game4.jpg" alt="Game 4">
+            <div class="game-title">Favorite Game</div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
