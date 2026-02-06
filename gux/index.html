@@ -4,17 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gux - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #151515;
+            --border-primary: #222222;
+            --border-secondary: #333333;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-muted: #888888;
+            --text-dim: #555555;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #8b5cf6;
+            --accent-success: #10b981;
+            --spotify-green: #1db954;
         }
         
         body {
-            background-color: #0a0a0a;
-            color: #e0e0e0;
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            font-family: 'Outfit', system-ui, sans-serif;
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
@@ -22,23 +42,36 @@
             align-items: center;
             padding: 20px;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(40, 40, 40, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(40, 40, 40, 0.05) 0%, transparent 20%);
+                radial-gradient(circle at 20% 10%, rgba(59, 130, 246, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 80% 90%, rgba(139, 92, 246, 0.06) 0%, transparent 40%);
         }
         
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 700px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .profile-card {
-            background-color: #111111;
-            border-radius: 16px;
-            padding: 40px;
+            background: linear-gradient(135deg, rgba(17, 17, 17, 0.8) 0%, rgba(21, 21, 21, 0.6) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 50px;
             box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.7),
+                0 20px 60px rgba(0, 0, 0, 0.8),
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            border: 1px solid #222222;
+            border: 1px solid var(--border-primary);
             position: relative;
             overflow: hidden;
         }
@@ -50,146 +83,380 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, #333333, #666666, #333333);
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-primary));
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
         
         .profile-header {
             display: flex;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            animation: slideInLeft 0.6s ease 0.2s backwards;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         
         .avatar-container {
             position: relative;
-            margin-right: 25px;
+            margin-right: 30px;
         }
         
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #333333;
-            background-color: #1a1a1a;
+            border: 4px solid transparent;
+            background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
+                        linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) border-box;
         }
         
         .avatar-placeholder {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            background-color: #1a1a1a;
-            border: 3px solid #333333;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666666;
-            font-size: 2rem;
+            color: var(--text-primary);
+            font-size: 2.5rem;
+            border: 4px solid var(--border-secondary);
         }
         
         .online-status {
             position: absolute;
             bottom: 5px;
             right: 5px;
-            width: 20px;
-            height: 20px;
-            background-color: #2ecc71;
+            width: 24px;
+            height: 24px;
+            background-color: var(--accent-success);
             border-radius: 50%;
-            border: 3px solid #111111;
+            border: 4px solid var(--bg-secondary);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            50% { 
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
         }
         
         .profile-info h1 {
-            font-size: 2.2rem;
-            margin-bottom: 5px;
-            color: #ffffff;
-            font-weight: 600;
-            letter-spacing: -0.5px;
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 700;
+            letter-spacing: -1px;
         }
         
         .username {
-            font-size: 1rem;
-            color: #888888;
+            font-size: 1.1rem;
+            color: var(--text-muted);
             margin-bottom: 15px;
+            font-family: 'Space Mono', monospace;
         }
         
         .badge {
             display: inline-flex;
             align-items: center;
-            background-color: #222222;
-            color: #cccccc;
-            padding: 7px 16px;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            border: 1px solid #333333;
-            font-weight: 500;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            color: #a0c4ff;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            font-weight: 600;
             gap: 8px;
         }
         
         .tool-emoji {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
         
         .description-box {
-            background-color: #151515;
-            padding: 25px;
-            border-radius: 12px;
+            background-color: var(--bg-tertiary);
+            padding: 30px;
+            border-radius: 16px;
             margin-bottom: 30px;
-            border-left: 3px solid #444444;
+            border-left: 4px solid var(--accent-primary);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease 0.3s backwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .description-box:hover {
+            border-left-color: var(--accent-secondary);
+            transform: translateX(5px);
         }
         
         .description-box h2 {
-            color: #cccccc;
+            color: var(--text-primary);
             margin-bottom: 15px;
-            font-size: 1.2rem;
-            font-weight: 500;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
         
         .description-box p {
-            color: #aaaaaa;
-            font-size: 1.05rem;
-            line-height: 1.7;
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
         
         .section-title {
-            font-size: 1.3rem;
-            color: #cccccc;
+            font-size: 1.4rem;
+            color: var(--text-primary);
             margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #222222;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-primary);
+            font-weight: 600;
+        }
+        
+        /* Social Links Section */
+        .social-links {
+            background: linear-gradient(135deg, rgba(21, 21, 21, 0.5) 0%, rgba(17, 17, 17, 0.5) 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-primary);
+            animation: fadeInUp 0.6s ease 0.4s backwards;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-secondary);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .social-link:hover::before {
+            left: 100%;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .social-link i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .social-link span {
+            font-size: 0.95rem;
             font-weight: 500;
         }
         
-        .recent-activity {
-            background-color: #151515;
-            border-radius: 12px;
-            padding: 25px;
+        /* Specific social colors */
+        .social-link.discord:hover {
+            border-color: #5865f2;
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3);
+        }
+        
+        .social-link.github:hover {
+            border-color: #ffffff;
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-link.twitter:hover {
+            border-color: #1da1f2;
+            box-shadow: 0 8px 20px rgba(29, 161, 242, 0.3);
+        }
+        
+        .social-link.youtube:hover {
+            border-color: #ff0000;
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+        }
+        
+        /* Spotify Now Playing */
+        .spotify-section {
+            background: linear-gradient(135deg, rgba(21, 21, 21, 0.5) 0%, rgba(17, 17, 17, 0.5) 100%);
+            border-radius: 16px;
+            padding: 30px;
             margin-bottom: 30px;
-            border: 1px solid #222222;
+            border: 1px solid var(--border-primary);
+            animation: fadeInUp 0.6s ease 0.5s backwards;
+        }
+        
+        .spotify-player {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .spotify-player:hover {
+            border-color: var(--spotify-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(29, 185, 84, 0.2);
+        }
+        
+        .spotify-album {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #1db954, #1ed760);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .spotify-info {
+            flex: 1;
+        }
+        
+        .spotify-track {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .spotify-artist {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        
+        .spotify-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--bg-tertiary);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .spotify-progress {
+            height: 100%;
+            background: var(--spotify-green);
+            width: 60%;
+            animation: progressMove 3s ease-in-out infinite;
+        }
+        
+        @keyframes progressMove {
+            0%, 100% { width: 60%; }
+            50% { width: 75%; }
+        }
+        
+        .spotify-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(29, 185, 84, 0.2);
+            color: var(--spotify-green);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(29, 185, 84, 0.3);
+        }
+        
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--spotify-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .recent-activity {
+            background: linear-gradient(135deg, rgba(21, 21, 21, 0.5) 0%, rgba(17, 17, 17, 0.5) 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-primary);
+            animation: fadeInUp 0.6s ease 0.6s backwards;
         }
         
         .coming-soon {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 120px;
-            color: #666666;
-            font-size: 1.1rem;
-            background-color: #111111;
-            border-radius: 8px;
-            border: 1px dashed #333333;
+            height: 140px;
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            border: 2px dashed var(--border-secondary);
+            font-weight: 500;
         }
         
         .footer {
             text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #222222;
-            color: #555555;
-            font-size: 0.9rem;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-primary);
+            color: var(--text-dim);
+            font-size: 0.95rem;
         }
         
         @media (max-width: 650px) {
             .profile-card {
-                padding: 30px 25px;
+                padding: 35px 25px;
             }
             
             .profile-header {
@@ -199,22 +466,35 @@
             
             .avatar-container {
                 margin-right: 0;
-                margin-bottom: 20px;
+                margin-bottom: 25px;
             }
             
             .avatar, .avatar-placeholder {
-                width: 90px;
-                height: 90px;
+                width: 100px;
+                height: 100px;
+            }
+            
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .spotify-player {
+                flex-direction: column;
+                text-align: center;
             }
         }
         
         @media (max-width: 480px) {
             .profile-card {
+                padding: 30px 20px;
+            }
+            
+            .description-box, .recent-activity, .social-links, .spotify-section {
                 padding: 25px 20px;
             }
             
-            .description-box, .recent-activity {
-                padding: 20px;
+            .social-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -223,14 +503,14 @@
     <div class="container">
         <div class="profile-card">
             <div class="profile-header">
-<div class="avatar-container">
-    <img src="/gux/profile.jpg" alt="Gux Profile Picture" class="avatar" 
-         onerror="this.style.display='none'; document.getElementById('avatarPlaceholder').style.display='flex';">
-    <div id="avatarPlaceholder" class="avatar-placeholder" style="display: none;">
-        <i class="fas fa-user"></i>
-    </div>
-    <div class="online-status" title="Online"></div>
-</div>
+                <div class="avatar-container">
+                    <img src="profile.jpg" alt="Gux Profile Picture" class="avatar" 
+                         onerror="this.style.display='none'; document.getElementById('avatarPlaceholder').style.display='flex';">
+                    <div id="avatarPlaceholder" class="avatar-placeholder" style="display: none;">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="online-status" title="Online"></div>
+                </div>
                 <div class="profile-info">
                     <h1>Gux</h1>
                     <div class="username">@gux</div>
@@ -243,6 +523,53 @@
             <div class="description-box">
                 <h2>About</h2>
                 <p>Howdy, I'm Gux and I like video games like brawlhalla, minecraft, polytoria, etc.</p>
+            </div>
+            
+            <!-- Social Links Section -->
+            <div class="social-links">
+                <h2 class="section-title">Connect</h2>
+                <div class="social-grid">
+                    <a href="#" class="social-link discord" title="Discord">
+                        <i class="fab fa-discord"></i>
+                        <span>Discord</span>
+                    </a>
+                    <a href="#" class="social-link github" title="GitHub">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="social-link twitter" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="#" class="social-link youtube" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Spotify Now Playing -->
+            <div class="spotify-section">
+                <h2 class="section-title">
+                    <i class="fab fa-spotify" style="color: var(--spotify-green); margin-right: 8px;"></i>
+                    Now Playing
+                </h2>
+                <div class="spotify-player">
+                    <div class="spotify-album">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="spotify-info">
+                        <div class="spotify-track">Gaming Vibes Mix</div>
+                        <div class="spotify-artist">Various Artists</div>
+                        <div class="spotify-bar">
+                            <div class="spotify-progress"></div>
+                        </div>
+                    </div>
+                    <div class="spotify-live">
+                        <div class="pulse-dot"></div>
+                        LIVE
+                    </div>
+                </div>
             </div>
             
             <div class="recent-activity">
