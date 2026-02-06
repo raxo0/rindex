@@ -29,6 +29,13 @@
             max-width: 800px;
             margin: 0 auto;
         }
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
         
         .header {
             text-align: center;
@@ -374,7 +381,6 @@
                 
                 <div class="profile-avatar">
     <img src="/gux/profile.jpg" alt="Gux Profile Picture" 
-         style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;"
          onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\"fas fa-user\"></i>';">
 </div>
                     <div class="profile-info">
