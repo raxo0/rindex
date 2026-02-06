@@ -1,174 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Gux — Profile</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
-<style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: radial-gradient(circle at top, #1a1f3c, #050509);
-    color: white;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-/* Container */
-
-.container {
-    width: 100%;
-    max-width: 520px;
-    padding: 50px 20px;
-    text-align: center;
-}
-
-    /* Section header */
-
-.section-header {
-    margin-top: 45px;
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    opacity: 0.9;
-}
-
-.section-header::before,
-.section-header::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(120,150,255,0.5), transparent);
-}
-
-.section-header span {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #cfd6ff;
-}
-
-/* Profile */
-
-.profile-pic {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid rgba(255,255,255,0.2);
-    box-shadow: 0 0 25px rgba(120,150,255,0.4);
-}
-
-.username {
-    margin-top: 18px;
-    font-size: 30px;
-    font-weight: 800;
-}
-
-.bio {
-    margin-top: 6px;
-    font-size: 14px;
-    color: #cfcfcf;
-    opacity: 0.85;
-}
-
-/* Games grid */
-
-.games {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
-}
-
-/* Game card */
-
-.game {
-    backdrop-filter: blur(14px);
-    background: rgba(255,255,255,0.05);
-    border-radius: 18px;
-    padding: 14px;
-    transition: all 0.25s ease;
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-.game:hover {
-    transform: translateY(-6px) scale(1.03);
-    background: rgba(255,255,255,0.1);
-    box-shadow: 0 0 25px rgba(120,150,255,0.25);
-}
-
-/* Force same image size */
-
-.game img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-.game-title {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #e5e5e5;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gux - Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(40, 40, 40, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(40, 40, 40, 0.05) 0%, transparent 20%);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .profile-card {
+            background-color: #111111;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            border: 1px solid #222222;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #333333, #666666, #333333);
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .avatar-container {
+            position: relative;
+            margin-right: 25px;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #333333;
+            background-color: #1a1a1a;
+        }
+        
+        .online-status {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+            border: 3px solid #111111;
+        }
+        
+        .profile-info h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            color: #ffffff;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        .username {
+            font-size: 1rem;
+            color: #888888;
+            margin-bottom: 15px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background-color: #222222;
+            color: #cccccc;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #333333;
+            font-weight: 500;
+        }
+        
+        .description-box {
+            background-color: #151515;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 3px solid #444444;
+        }
+        
+        .description-box h2 {
+            color: #cccccc;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .description-box p {
+            color: #aaaaaa;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            color: #cccccc;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #222222;
+            font-weight: 500;
+        }
+        
+        .recent-activity {
+            background-color: #151515;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid #222222;
+        }
+        
+        .coming-soon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+            color: #666666;
+            font-size: 1.1rem;
+            background-color: #111111;
+            border-radius: 8px;
+            border: 1px dashed #333333;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #222222;
+            color: #555555;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 650px) {
+            .profile-card {
+                padding: 30px 25px;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .avatar-container {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .avatar {
+                width: 90px;
+                height: 90px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-card {
+                padding: 25px 20px;
+            }
+            
+            .description-box, .recent-activity {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<div class="container">
-
-    <!-- Profile -->
-
-    <img src="profile.jpg" class="profile-pic" alt="Profile Picture">
-    <div class="username">Gux</div>
-    <div class="bio">sup, im tuff</div>
-
-    <!-- Games Section -->
-
-<div class="section-header">
-    <span>Games I own</span>
-</div>
-
-<div class="games">
-
-        <a class="game" href="https://minecraft.net" target="_blank">
-            <img src="minecraft.jpg" alt="Minecraft">
-            <div class="game-title">Minecraft</div>
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <!-- Simple SVG avatar placeholder -->
+                    <svg class="avatar" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
+                        <circle cx="50" cy="40" r="15" fill="#333"/>
+                        <path d="M30,75 Q50,90 70,75" stroke="#333" stroke-width="5" fill="none"/>
+                        <circle cx="40" cy="35" r="3" fill="#666"/>
+                        <circle cx="60" cy="35" r="3" fill="#666"/>
+                    </svg>
+                    <div class="online-status" title="Online"></div>
+                </div>
+                <div class="profile-info">
+                    <h1>Gux</h1>
+                    <div class="username">@gux</div>
+                    <div class="badge">owner</div>
+                </div>
+            </div>
+            
+            <div class="description-box">
+                <h2>About</h2>
+                <p>Howdy, I'm Gux and I like video games like brawlhalla, minecraft, polytoria, etc.</p>
+            </div>
+            
+            <div class="recent-activity">
+                <h2 class="section-title">Recent Activity</h2>
+                <div class="coming-soon">
+                    Coming Soon
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>Simple Profile • Gux</p>
+            </div>
         </div>
-
-        <a class="game" href="https://polytoria.com" target="_blank">
-            <img src="polytoria.jpg" alt="Polytoria">
-            <div class="game-title">Polytoria</div>
-        </div>
-
-        <a class="game" href="https://rocketleague.com/en/" target="_blank">
-            <img src="rocketleague.jpg" alt="Rocket League">
-            <div class="game-title">Rocket League</div>
-        </div>
-
-        <a class="game" href="https://www.brawlhalla.com/" target="_blank">
-            <img src="brawlhalla.jpg" alt="Brawlhalla">
-            <div class="game-title">Brawlhalla</div>
-        </div>
-
     </div>
-
-</div>
-
 </body>
 </html>
