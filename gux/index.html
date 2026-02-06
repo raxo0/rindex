@@ -73,6 +73,19 @@
             background-color: #1a1a1a;
         }
         
+        .avatar-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #1a1a1a;
+            border: 3px solid #333333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666666;
+            font-size: 2rem;
+        }
+        
         .online-status {
             position: absolute;
             bottom: 5px;
@@ -189,7 +202,7 @@
                 margin-bottom: 20px;
             }
             
-            .avatar {
+            .avatar, .avatar-placeholder {
                 width: 90px;
                 height: 90px;
             }
@@ -211,14 +224,11 @@
         <div class="profile-card">
             <div class="profile-header">
                 <div class="avatar-container">
-                    <!-- Simple SVG avatar placeholder -->
-                    <svg class="avatar" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="45" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
-                        <circle cx="50" cy="40" r="15" fill="#333"/>
-                        <path d="M30,75 Q50,90 70,75" stroke="#333" stroke-width="5" fill="none"/>
-                        <circle cx="40" cy="35" r="3" fill="#666"/>
-                        <circle cx="60" cy="35" r="3" fill="#666"/>
-                    </svg>
+                    <!-- Profile picture from profile.jpg -->
+                    <img src="profile.jpg" alt="Gux Profile Picture" class="avatar" onerror="this.style.display='none'; document.getElementById('avatarPlaceholder').style.display='flex';">
+                    <div id="avatarPlaceholder" class="avatar-placeholder" style="display: none;">
+                        <i class="fas fa-user"></i>
+                    </div>
                     <div class="online-status" title="Online"></div>
                 </div>
                 <div class="profile-info">
@@ -243,9 +253,31 @@
             </div>
             
             <div class="footer">
-                <p>Profile • Gux</p>
+                <p>Simple Profile • Gux</p>
             </div>
         </div>
     </div>
+
+    <script>
+        // Check if profile.jpg exists, show placeholder if not
+        document.addEventListener('DOMContentLoaded', function() {
+            const avatarImg = document.querySelector('.avatar');
+            const avatarPlaceholder = document.getElementById('avatarPlaceholder');
+            
+            // Try to load the image
+            const testImage = new Image();
+            testImage.onload = function() {
+                // Image exists, show it
+                avatarImg.style.display = 'block';
+                avatarPlaceholder.style.display = 'none';
+            };
+            testImage.onerror = function() {
+                // Image doesn't exist, show placeholder
+                avatarImg.style.display = 'none';
+                avatarPlaceholder.style.display = 'flex';
+            };
+            testImage.src = 'profile.jpg';
+        });
+    </script>
 </body>
 </html>
